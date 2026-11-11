@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "lens": {
+      "type": "stdio",
+      "command": "/Applications/Lens.app/Contents/MacOS/lens-mcp"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "lens",
+  "version": "1.0.11",
+  "description": "Inspect, mock, rewrite, pause and replay the HTTP(S) traffic Lens captures",
+  "author": { "name": "WhiteHyun" },
+  "homepage": "https://lens.whitehyun.com",
+  "repository": "https://github.com/WhiteHyun/lens-plugins",
+  "keywords": ["http", "proxy", "debugging", "mcp"]
+}

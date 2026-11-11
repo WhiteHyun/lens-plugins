@@ -1,0 +1,12 @@
+{
+  "name": "lens",
+  "description": "Lens, the macOS HTTP(S) debugging proxy, for AI coding agents",
+  "owner": { "name": "WhiteHyun" },
+  "plugins": [
+    {
+      "name": "lens",
+      "source": "./plugins/lens",
+      "description": "Inspect, mock, rewrite, pause and replay the HTTP(S) traffic Lens captures"
+    }
+  ]
+}

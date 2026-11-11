@@ -1,0 +1,7 @@
+{
+  "name": "lens",
+  "version": "1.0.11",
+  "description": "Inspect, mock, rewrite, pause and replay the HTTP(S) traffic Lens captures",
+  "author": { "name": "WhiteHyun" },
+  "homepage": "https://lens.whitehyun.com"
+}

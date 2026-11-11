@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "lens": {
+      "command": "/Applications/Lens.app/Contents/MacOS/lens-mcp"
+    }
+  }
+}
