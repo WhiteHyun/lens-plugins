@@ -5,7 +5,7 @@ description: Debug HTTP(S) traffic with Lens, the macOS debugging proxy, through
 
 # Lens
 
-Lens is an HTTP(S) debugging proxy on the user's Mac. It captures the traffic of apps, simulators, devices and browsers that use it, and changes that traffic with rules: Map Local (answer a request with a local response), Rewrite (change requests and responses) and Breakpoint (pause traffic until it is resolved). You reach it through the `lens` MCP server.
+Lens is an HTTP(S) debugging proxy on the user's Mac. It captures the traffic of apps, simulators, devices and browsers that use it, and changes that traffic with rules: Map Local (answer a request with a local response), Rewrite (change requests and responses, or send requests to another server with Modify URL) and Breakpoint (pause traffic until it is resolved). You reach it through the `lens` MCP server.
 
 ## Before you start
 
@@ -17,7 +17,7 @@ Lens is an HTTP(S) debugging proxy on the user's Mac. It captures the traffic of
 
 Work in this order, and stop at the step that answers the user.
 
-1. **Read first.** Call `get_status`. Note `latest_transaction_id`; it is your cursor.
+1. **Read first.** Call `get_status`. Note `latest_transaction_id`; it is your cursor. Check `inspected_hosts`: Lens captures and decrypts only those hosts, and everything else passes through unread. If the host you need is missing, add it with `inspect_host` (Control) before reproducing.
 2. **Reproduce.** Ask the user to trigger the behavior, or trigger it yourself only if they asked you to.
 3. **Wait for new traffic.** Call `wait_for_transactions` with `after` set to the cursor and a `filter` (for example `host~api.example.com status>=400`). It returns as soon as matching traffic finishes. For a large capture, start with `summarize_traffic`.
 4. **Inspect.** Call `get_transaction` on the rows that matter. Use `list_transactions` with `contains` to search headers and bodies.
@@ -61,6 +61,7 @@ Prefer the MCP tools when you have them; use `lens` when you only have a shell.
 | `summarize_traffic` | Find where errors and slow requests are in a large capture |
 | `list_transactions` | List and search captured traffic |
 | `get_transaction` | Read one request and response in full |
+| `inspect_host` | Add a host Lens should capture and decrypt |
 | `list_rules` | See rules, folders and what applies, in apply order |
 | `list_paused` | See what a breakpoint holds right now |
 | `create_map_local_from_transaction` | Mock a response based on a real capture |
