@@ -39,6 +39,8 @@ Work in this order, and stop at the step that answers the user.
 - `replay_transaction` and `send_request` reach the network. The first time you reach a host, Lens asks the user to approve it; a denial or no answer within 60 seconds is an error. Tell the user you are waiting for their approval.
 - They apply the Space's rules by default, like traffic from the app would. Pass `apply_space_rules: false` only when you need the server's raw answer.
 - Requests Lens sends are marked as sent by Lens; filter them with `is-lens`.
+- A call that repeats one the same client had just made (the same method, URL and body, while the first was still waiting or within 2 seconds of it; URLs that differ only by a cache-buster such as `_=` are the same) is marked as a duplicate: `summarize_traffic` counts them in `duplicates`, `is-duplicate` filters them, and `get_transaction` gives the first call's id in `duplicate_of`. A retry after a failed call is not one.
+- An N+1 is 5 or more calls for one item after another (`GET /users/1`, `/users/2`, …), each within a second of the last, from one client: `summarize_traffic` counts their calls in `n_plus_one` and lists the runs in `n_plus_one_runs`, `is-n-plus-one` filters them, list rows give the run's first call in `n_plus_one_of`, and `get_transaction` gives `n_plus_one` (`call`, `count`, `first_id`). Suggest one request that returns them all. CORS preflights, images, fonts, media, scripts and stylesheets are never one, nor is a poll whose URLs differ only by a cache-buster (`_=`, the time, a random number).
 
 ## From a shell
 
